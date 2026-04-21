@@ -48,7 +48,7 @@ export default function Home() {
             className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
           >
             {/* Left Content */}
-            <motion.div variants={itemVariants}>
+            <motion.div variants={itemVariants} className="order-2 md:order-1">
               <motion.h1
                 className="text-5xl md:text-6xl font-bold text-foreground mb-6 leading-tight text-balance"
                 initial={{ opacity: 0, y: 20 }}
@@ -124,7 +124,7 @@ export default function Home() {
             {/* Right Image */}
             <motion.div
               variants={itemVariants}
-              className="hidden md:flex justify-center"
+              className="flex justify-center order-1 md:order-2"
             >
               <motion.div
                 whileHover={{ scale: 1.05 }}
