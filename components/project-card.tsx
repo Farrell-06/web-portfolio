@@ -1,6 +1,5 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import { ExternalLink, Github } from 'lucide-react'
 import { PhotoPlaceholder } from './photo-placeholder'
 
@@ -11,6 +10,7 @@ interface ProjectCardProps {
   tags: string[]
   demoUrl?: string
   githubUrl?: string
+  statusLabel?: string
   index?: number
 }
 
@@ -21,63 +21,73 @@ export function ProjectCard({
   tags,
   demoUrl,
   githubUrl,
-  index = 0,
+  statusLabel,
 }: ProjectCardProps) {
+  const hasValidDemo = demoUrl && !demoUrl.includes('example.com')
+  const hasValidGithub = githubUrl && githubUrl !== 'https://github.com'
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.1, duration: 0.5 }}
-      className="bg-card border border-border rounded-lg overflow-hidden hover:shadow-lg hover:border-primary/50 transition-all duration-300 hover:-translate-y-1"
-    >
-      {/* Image */}
-      <div className="aspect-video bg-muted overflow-hidden">
-        {image || <PhotoPlaceholder className="w-full h-full" label="Project" />}
-      </div>
-
-      {/* Content */}
-      <div className="p-6">
-        <h3 className="text-xl font-bold text-foreground mb-2">{title}</h3>
-        <p className="text-muted-foreground mb-4 line-clamp-3">{description}</p>
-
-        {/* Tags */}
-        <div className="flex flex-wrap gap-2 mb-6">
-          {tags.map((tag) => (
-            <span
-              key={tag}
-              className="text-xs px-3 py-1 rounded-full bg-accent/20 text-accent-foreground border border-accent/40"
-            >
-              {tag}
+    <div className="group bg-card border border-border rounded-xl overflow-hidden shadow-sm hover:border-primary/50 hover:-translate-y-1 hover:shadow-md transition-all duration-300 flex flex-col justify-between">
+      <div>
+        {/* Project Thumbnail */}
+        <div className="aspect-video bg-muted overflow-hidden border-b border-border/70 relative">
+          {image || <PhotoPlaceholder className="w-full h-full" label="Proyek" />}
+          {statusLabel && (
+            <span className="absolute top-3 right-3 text-xs font-medium px-2.5 py-1 rounded bg-background/90 text-foreground border border-border backdrop-blur-sm">
+              {statusLabel}
             </span>
-          ))}
+          )}
         </div>
 
-        {/* Links */}
-        <div className="flex gap-4 pt-4 border-t border-border">
-          {demoUrl && (
-            <a
-              href={demoUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors font-medium"
-            >
-              <span>View Demo</span>
-              <ExternalLink className="w-4 h-4" />
-            </a>
-          )}
-          {githubUrl && (
-            <a
-              href={githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors font-medium"
-            >
-              <span>Code</span>
-              <Github className="w-4 h-4" />
-            </a>
-          )}
+        {/* Card Content */}
+        <div className="p-6">
+          <h3 className="text-xl font-bold text-foreground mb-2 tracking-tight">{title}</h3>
+          <p className="text-muted-foreground text-sm leading-relaxed mb-5">{description}</p>
+
+          {/* Tags */}
+          <div className="flex flex-wrap gap-2 mb-2">
+            {tags.map((tag) => (
+              <span
+                key={tag}
+                className="text-xs px-2.5 py-1 rounded-md bg-muted text-foreground font-medium border border-border"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
-    </motion.div>
+
+      {/* Action Links */}
+      <div className="px-6 py-4 border-t border-border/60 bg-muted/20 flex flex-wrap items-center gap-4">
+        {hasValidDemo ? (
+          <a
+            href={demoUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline min-h-[44px] py-2"
+          >
+            <span>Buka Demo</span>
+            <ExternalLink className="w-4 h-4" />
+          </a>
+        ) : null}
+
+        {hasValidGithub ? (
+          <a
+            href={githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-foreground hover:text-primary transition-colors min-h-[44px] py-2"
+          >
+            <Github className="w-4 h-4" />
+            <span>Lihat Kode</span>
+          </a>
+        ) : (
+          <span className="text-xs text-muted-foreground py-2">
+            {hasValidDemo ? '' : 'Repositori: Tersedia secara lokal / atas permintaan'}
+          </span>
+        )}
+      </div>
+    </div>
   )
 }

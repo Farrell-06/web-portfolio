@@ -7,6 +7,8 @@ import { SectionContainer } from '@/components/section-container'
 import { ContactForm } from '@/components/contact-form'
 import { Mail, Github } from 'lucide-react'
 
+const easeOutExpo = [0.16, 1, 0.3, 1] as const
+
 export default function Contact() {
   const contactMethods = [
     {
@@ -14,140 +16,120 @@ export default function Contact() {
       title: 'Email',
       description: 'farrell.prayoga106@gmail.com',
       href: 'mailto:farrell.prayoga106@gmail.com',
+      actionText: 'Kirim Email',
     },
     {
       icon: Github,
       title: 'GitHub',
       description: 'github.com/Farrell-06',
       href: 'https://github.com/Farrell-06',
+      actionText: 'Kunjungi Profil',
     },
   ]
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
-    },
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6 },
-    },
-  }
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Navbar />
 
-      {/* Hero */}
-      <SectionContainer className="py-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6 text-balance">
-            Get in <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">Touch</span>
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl">
-            Have a project in mind or just want to chat? I&apos;d love to hear from you. Reach out
-            through any of the channels below.
-          </p>
-        </motion.div>
-      </SectionContainer>
-
-      {/* Contact Methods */}
-      <SectionContainer>
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16 max-w-3xl mx-auto"
-        >
-          {contactMethods.map((method) => {
-            const Icon = method.icon
-            return (
-              <motion.a
-                key={method.title}
-                href={method.href}
-                variants={itemVariants}
-                target={method.href.startsWith('http') ? '_blank' : undefined}
-                rel={method.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                className="group p-6 rounded-lg border border-border bg-card hover:border-primary hover:shadow-lg transition-all duration-300"
-              >
-                <div className="text-primary group-hover:scale-110 transition-transform mb-4">
-                  <Icon className="w-8 h-8" />
-                </div>
-                <h3 className="text-lg font-semibold text-foreground mb-2">{method.title}</h3>
-                <p className="text-muted-foreground group-hover:text-primary transition-colors">
-                  {method.description}
-                </p>
-              </motion.a>
-            )
-          })}
-        </motion.div>
-      </SectionContainer>
-
-      {/* Contact Form Section */}
-      <SectionContainer className="bg-card/50">
-        <div className="mb-12 text-center">
+      <main className="flex-1">
+        {/* Header */}
+        <SectionContainer className="py-12 md:py-16">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, ease: easeOutExpo }}
+            className="max-w-3xl"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Send me a message</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Fill out the form below and I&apos;ll get back to you as soon as possible.
+            <h1 className="text-4xl sm:text-5xl font-bold text-foreground tracking-tight mb-4 text-balance">
+              Hubungi Saya
+            </h1>
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              Silakan hubungi saya untuk kolaborasi pengembangan aplikasi, diskusi seputar sistem informasi, atau peluang magang.
             </p>
           </motion.div>
-        </div>
+        </SectionContainer>
 
-        <ContactForm />
-      </SectionContainer>
-
-      {/* FAQ or Additional Info Section */}
-      <SectionContainer>
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          className="max-w-2xl mx-auto"
-        >
-          <h2 className="text-3xl font-bold text-foreground mb-8 text-center">Quick Info</h2>
-          <div className="space-y-6">
-            <div className="border-l-2 border-primary pl-6">
-              <h3 className="text-lg font-semibold text-foreground mb-2">Response Time</h3>
-              <p className="text-muted-foreground">
-                I typically respond to inquiries within 24-48 hours. For urgent matters, please indicate
-                that in your message.
-              </p>
-            </div>
-            <div className="border-l-2 border-primary pl-6">
-              <h3 className="text-lg font-semibold text-foreground mb-2">Availability</h3>
-              <p className="text-muted-foreground">
-                I&apos;m open to freelance projects, collaborations, and full-time opportunities. Feel
-                free to discuss your ideas!
-              </p>
-            </div>
-            <div className="border-l-2 border-primary pl-6">
-              <h3 className="text-lg font-semibold text-foreground mb-2">Best Reach</h3>
-              <p className="text-muted-foreground">
-                Email is the best way to reach me for detailed projects or inquiries. For quick
-                questions, you can also reach out on LinkedIn or GitHub.
-              </p>
-            </div>
+        {/* Contact Channels */}
+        <SectionContainer className="py-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto mb-16">
+            {contactMethods.map((method, index) => {
+              const Icon = method.icon
+              return (
+                <motion.a
+                  key={method.title}
+                  href={method.href}
+                  target={method.href.startsWith('http') ? '_blank' : undefined}
+                  rel={method.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1, ease: easeOutExpo }}
+                  className="p-6 rounded-xl border border-border bg-card hover:border-primary/60 hover:-translate-y-1 hover:shadow-md transition-all duration-200 flex flex-col justify-between group"
+                >
+                  <div>
+                    <div className="text-primary mb-3 transition-transform duration-200 group-hover:scale-110">
+                      <Icon className="w-6 h-6" />
+                    </div>
+                    <h2 className="text-lg font-semibold text-foreground mb-1">{method.title}</h2>
+                    <p className="text-sm text-muted-foreground break-all">{method.description}</p>
+                  </div>
+                  <div className="mt-4 pt-3 border-t border-border/50 text-xs font-medium text-primary">
+                    {method.actionText} →
+                  </div>
+                </motion.a>
+              )
+            })}
           </div>
-        </motion.div>
-      </SectionContainer>
+        </SectionContainer>
+
+        {/* Form Section */}
+        <SectionContainer className="py-16 border-t border-border/70 bg-card/30">
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.5, ease: easeOutExpo }}
+            className="mb-10 text-center max-w-xl mx-auto"
+          >
+            <h2 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight mb-2">
+              Kirim Pesan
+            </h2>
+            <p className="text-sm text-muted-foreground">
+              Formulir di bawah akan membuka aplikasi email Anda dengan format pesan yang sudah disiapkan secara otomatis.
+            </p>
+          </motion.div>
+
+          <ContactForm />
+        </SectionContainer>
+
+        {/* Information Notes */}
+        <SectionContainer className="py-16">
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.5, ease: easeOutExpo }}
+            className="max-w-2xl mx-auto"
+          >
+            <h2 className="text-xl font-bold text-foreground mb-6 text-center">
+              Informasi Komunikasi
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="p-5 rounded-xl border border-border bg-card hover:border-primary/40 transition-colors">
+                <h3 className="font-semibold text-foreground text-sm mb-1.5">Kanal Utama</h3>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  Email adalah media yang paling direkomendasikan untuk pertanyaan teknis, diskusi proyek, atau tawaran kerja sama.
+                </p>
+              </div>
+              <div className="p-5 rounded-xl border border-border bg-card hover:border-primary/40 transition-colors">
+                <h3 className="font-semibold text-foreground text-sm mb-1.5">Ketersediaan Kolaborasi</h3>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  Terbuka untuk eksplorasi proyek pengembangan web berbasis Python & JavaScript, studi kasus sistem informasi, dan program magang.
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        </SectionContainer>
+      </main>
 
       <Footer />
     </div>
