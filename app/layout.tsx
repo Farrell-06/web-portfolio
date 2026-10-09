@@ -8,8 +8,8 @@ const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'Farrell Putra Prayoga — Portofolio Sistem Informasi',
-  description: 'Portofolio dan proyek sistem informasi oleh Farrell Putra Prayoga.',
+  title: 'Farrell Putra Prayoga | Aspiring Data Analyst & Sistem Informasi',
+  description: 'Portofolio personal Farrell Putra Prayoga: Mahasiswa Sistem Informasi Universitas Mercu Buana dengan fokus utama pada Data Analytics, Machine Learning, dan Web Development.',
   icons: {
     icon: [
       {

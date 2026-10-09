@@ -48,7 +48,7 @@ export function ContactForm() {
     const mailtoBody = encodeURIComponent(
       `Nama: ${formData.name}\nEmail Pengirim: ${formData.email}\n\nPesan:\n${formData.message}`
     )
-    const mailtoUrl = `mailto:farrell.prayoga106@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`
+    const mailtoUrl = `mailto:farrell.putra106@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`
 
     // Trigger mailto
     window.location.href = mailtoUrl
@@ -72,10 +72,10 @@ export function ContactForm() {
           <p className="text-sm text-muted-foreground">
             Jika aplikasi email tidak terbuka otomatis, Anda dapat mengirimkan email langsung ke{' '}
             <a
-              href="mailto:farrell.prayoga106@gmail.com"
+              href="mailto:farrell.putra106@gmail.com"
               className="font-medium text-foreground underline hover:text-primary"
             >
-              farrell.prayoga106@gmail.com
+              farrell.putra106@gmail.com
             </a>
             .
           </p>

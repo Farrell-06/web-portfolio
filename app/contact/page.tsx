@@ -5,7 +5,7 @@ import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
 import { SectionContainer } from '@/components/section-container'
 import { ContactForm } from '@/components/contact-form'
-import { Mail, Github } from 'lucide-react'
+import { Mail, Github, MapPin } from 'lucide-react'
 
 const easeOutExpo = [0.16, 1, 0.3, 1] as const
 
@@ -14,9 +14,16 @@ export default function Contact() {
     {
       icon: Mail,
       title: 'Email',
-      description: 'farrell.prayoga106@gmail.com',
-      href: 'mailto:farrell.prayoga106@gmail.com',
+      description: 'farrell.putra106@gmail.com',
+      href: 'mailto:farrell.putra106@gmail.com',
       actionText: 'Kirim Email',
+    },
+    {
+      icon: MapPin,
+      title: 'Lokasi',
+      description: 'Bekasi, Indonesia',
+      href: undefined,
+      actionText: 'Domisili',
     },
     {
       icon: Github,
@@ -40,42 +47,52 @@ export default function Contact() {
             transition={{ duration: 0.55, ease: easeOutExpo }}
             className="max-w-3xl"
           >
-            <h1 className="text-4xl sm:text-5xl font-bold text-foreground tracking-tight mb-4 text-balance">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-xs font-semibold text-primary mb-3">
+              <span>Komunikasi</span>
+            </div>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-foreground tracking-tight mb-3">
               Hubungi Saya
             </h1>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Silakan hubungi saya untuk kolaborasi pengembangan aplikasi, diskusi seputar sistem informasi, atau peluang magang.
+            <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
+              Silakan hubungi saya untuk kolaborasi proyek data analytics, studi model machine learning, maupun peluang magang di bidang Sistem Informasi.
             </p>
           </motion.div>
         </SectionContainer>
 
         {/* Contact Channels */}
         <SectionContainer className="py-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto mb-16">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto mb-16">
             {contactMethods.map((method, index) => {
               const Icon = method.icon
+              const isLink = Boolean(method.href)
+              const Component = isLink ? motion.a : motion.div
+
               return (
-                <motion.a
+                <Component
                   key={method.title}
-                  href={method.href}
-                  target={method.href.startsWith('http') ? '_blank' : undefined}
-                  rel={method.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                  {...(isLink
+                    ? {
+                        href: method.href,
+                        target: method.href?.startsWith('http') ? '_blank' : undefined,
+                        rel: method.href?.startsWith('http') ? 'noopener noreferrer' : undefined,
+                      }
+                    : {})}
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1, ease: easeOutExpo }}
-                  className="p-6 rounded-xl border border-border bg-card hover:border-primary/60 hover:-translate-y-1 hover:shadow-md transition-all duration-200 flex flex-col justify-between group"
+                  className="p-6 rounded-xl border border-border bg-card hover:border-primary/60 hover:shadow-xs transition-all duration-200 flex flex-col justify-between group min-h-[44px]"
                 >
                   <div>
-                    <div className="text-primary mb-3 transition-transform duration-200 group-hover:scale-110">
+                    <div className="text-primary mb-3 transition-transform duration-200 group-hover:scale-105">
                       <Icon className="w-6 h-6" />
                     </div>
-                    <h2 className="text-lg font-semibold text-foreground mb-1">{method.title}</h2>
-                    <p className="text-sm text-muted-foreground break-all">{method.description}</p>
+                    <h2 className="text-base font-semibold text-foreground mb-1">{method.title}</h2>
+                    <p className="text-xs text-muted-foreground break-all">{method.description}</p>
                   </div>
                   <div className="mt-4 pt-3 border-t border-border/50 text-xs font-medium text-primary">
-                    {method.actionText} →
+                    {method.actionText}
                   </div>
-                </motion.a>
+                </Component>
               )
             })}
           </div>
@@ -117,13 +134,13 @@ export default function Contact() {
               <div className="p-5 rounded-xl border border-border bg-card hover:border-primary/40 transition-colors">
                 <h3 className="font-semibold text-foreground text-sm mb-1.5">Kanal Utama</h3>
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  Email adalah media yang paling direkomendasikan untuk pertanyaan teknis, diskusi proyek, atau tawaran kerja sama.
+                  Email adalah media yang paling direkomendasikan untuk pertanyaan teknis, diskusi data, atau peluang magang.
                 </p>
               </div>
               <div className="p-5 rounded-xl border border-border bg-card hover:border-primary/40 transition-colors">
                 <h3 className="font-semibold text-foreground text-sm mb-1.5">Ketersediaan Kolaborasi</h3>
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  Terbuka untuk eksplorasi proyek pengembangan web berbasis Python & JavaScript, studi kasus sistem informasi, dan program magang.
+                  Terbuka untuk eksplorasi proyek Data Analytics, pemodelan klasifikasi Machine Learning, studi kasus Sistem Informasi, dan program magang.
                 </p>
               </div>
             </div>
