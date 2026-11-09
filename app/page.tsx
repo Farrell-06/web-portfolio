@@ -202,30 +202,38 @@ export default function Home() {
       domain: 'Data Analytics Foundations',
       description:
         'Pemahaman dasar analitik data, siklus analisis data bisnis, perumusan hipotesis, dan pembersihan dataset awal.',
+      image: '/certificate-revou.jpg',
+      credentialId: 'DAMC-240826-01-1-00060',
     },
     {
-      title: 'Getting Started with Data',
+      title: 'Getting Started with Data (Earn a credential!)',
       issuer: 'IBM SkillsBuild',
-      period: 'Agustus 2026',
+      period: '25 Agustus 2026',
       domain: 'Data Ecosystem & Principles',
       description:
-        'Konsep fundamental ekosistem data, tipe data, etika data, serta peran analisis data dalam organisasi modern.',
+        'Konsep fundamental ekosistem data modern, tipe dan struktur data, etika data, serta peran analisis data dalam organisasi bisnis.',
+      image: '/certificate-ibm-data.jpg',
+      credentialId: 'PLAN-14F2691E3A32',
     },
     {
       title: 'Classifying Data Using IBM Granite',
       issuer: 'IBM SkillsBuild',
-      period: 'Agustus 2026',
+      period: '28 Agustus 2026',
       domain: 'Machine Learning & Classification',
       description:
-        'Penerapan model klasifikasi data, evaluasi hasil klasifikasi, serta pemahaman alur kerja model machine learning terpandu.',
+        'Penerapan model klasifikasi data terpandu menggunakan kapabilitas model IBM Granite, penanganan data analitis, dan evaluasi metrik akurasi.',
+      image: '/certificate-ibm-granite.jpg',
+      credentialId: 'ALM-COURSE_4058910',
     },
     {
       title: 'Unleashing the Power of AI Agents',
       issuer: 'IBM SkillsBuild',
-      period: 'Agustus 2026',
-      domain: 'Applied Artificial Intelligence',
+      period: '29 Agustus 2026',
+      domain: 'Applied Artificial Intelligence & Agents',
       description:
         'Studi kapabilitas agentic AI, integrasi data terotomatisasi, serta pemanfaatan otomasi cerdas untuk efisiensi sistem.',
+      image: '/certificate-ibm-ai-agents.jpg',
+      credentialId: 'ALM-COURSE_3825456',
     },
   ]
 
@@ -685,13 +693,22 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: '-40px' }}
                   transition={{ duration: 0.5, delay: index * 0.1, ease: easeOutExpo }}
-                  className="p-6 rounded-2xl border border-border bg-card hover:border-primary/50 hover:shadow-sm transition-all duration-300 flex flex-col justify-between"
+                  className={`p-6 rounded-2xl border bg-card hover:border-primary/50 hover:shadow-sm transition-all duration-300 flex flex-col justify-between ${
+                    cert.image ? 'border-primary/30 shadow-xs' : 'border-border'
+                  }`}
                 >
                   <div>
                     <div className="flex items-center justify-between gap-2 mb-3">
-                      <span className="text-xs font-semibold px-2.5 py-1 rounded-md bg-primary/10 text-primary border border-primary/20">
-                        {cert.issuer}
-                      </span>
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs font-semibold px-2.5 py-1 rounded-md bg-primary/10 text-primary border border-primary/20">
+                          {cert.issuer}
+                        </span>
+                        {cert.image && (
+                          <span className="text-[11px] font-semibold px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+                            Bukti Terlampir
+                          </span>
+                        )}
+                      </div>
                       <span className="text-xs text-muted-foreground font-mono">
                         {cert.period}
                       </span>
@@ -703,19 +720,43 @@ export default function Home() {
                     <p className="text-xs font-medium text-primary mb-3">
                       {cert.domain}
                     </p>
-                    <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                    <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed mb-4">
                       {cert.description}
                     </p>
+
+                    {cert.image && (
+                      <div className="mb-4 overflow-hidden rounded-xl border border-border bg-muted/40 p-1">
+                        <div className="relative aspect-[1.414/1] w-full max-h-48 overflow-hidden rounded-lg">
+                          <Image
+                            src={cert.image}
+                            alt={`Bukti sertifikat ${cert.title}`}
+                            fill
+                            sizes="(max-width: 768px) 100vw, 400px"
+                            className="object-contain"
+                          />
+                        </div>
+                      </div>
+                    )}
                   </div>
 
-                  <div className="mt-5 pt-3 border-t border-border/70 flex items-center justify-between text-xs text-muted-foreground">
-                    <span className="flex items-center gap-1.5">
+                  <div className="mt-4 pt-3 border-t border-border/70 flex items-center justify-between text-xs text-muted-foreground">
+                    <span className="flex items-center gap-1.5 font-medium text-foreground">
                       <FileCheck2 className="w-3.5 h-3.5 text-primary" />
-                      <span>Sertifikat Terverifikasi</span>
+                      <span>{cert.credentialId ? `ID: ${cert.credentialId}` : 'Sertifikat Terverifikasi'}</span>
                     </span>
-                    <span className="text-[11px] text-muted-foreground/80 font-mono">
-                      Status: Lengkap
-                    </span>
+                    {cert.image ? (
+                      <Link
+                        href="/certifications"
+                        className="text-primary hover:underline font-semibold flex items-center gap-1 min-h-[44px] px-1"
+                      >
+                        <span>Lihat Detail</span>
+                        <ChevronRight className="w-3.5 h-3.5" />
+                      </Link>
+                    ) : (
+                      <span className="text-[11px] text-muted-foreground/80 font-mono">
+                        Status: Lengkap
+                      </span>
+                    )}
                   </div>
                 </motion.div>
               ))}
