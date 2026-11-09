@@ -91,7 +91,7 @@ export default function Home() {
         'Seaborn',
         'Jupyter Notebook',
       ],
-      githubUrl: 'https://github.com/Farrell-06',
+      githubUrl: 'https://github.com/Farrell-06/heart-disease-classification',
       metricsSummary: [
         { label: 'Akurasi Uji', value: '83.61%' },
         { label: 'Recall Positif', value: '94.00%' },
@@ -125,7 +125,7 @@ export default function Home() {
       description:
         'Website dinamis informasi festival musik yang dikembangkan secara mandiri, berfokus pada fungsionalitas dinamis jadwal konser dan integrasi basis data relasional.',
       tags: ['PHP', 'MySQL', 'CSS', 'Database Integration'],
-      githubUrl: 'https://github.com/Farrell-06',
+      githubUrl: 'https://github.com/Farrell-06/sonara-fest',
       image: (
         <div className="w-full h-full p-6 flex flex-col justify-between bg-gradient-to-br from-card via-muted/30 to-card">
           <div className="flex items-center justify-between text-xs text-muted-foreground font-mono">
@@ -165,7 +165,7 @@ export default function Home() {
       description:
         'Website profil perusahaan yang dikembangkan secara mandiri menggunakan Python dan Flask, menekankan struktur web modular, backend routing, dan pengujian sistem.',
       tags: ['Python', 'Flask', 'HTML5', 'CSS3', 'Jinja2'],
-      githubUrl: 'https://github.com/Farrell-06',
+      githubUrl: 'https://github.com/Farrell-06/company-profile-flask',
       image: (
         <div className="relative w-full h-full">
           <Image
