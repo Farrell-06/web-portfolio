@@ -8,7 +8,6 @@ import { Menu, X, Sun, Moon } from 'lucide-react'
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
-  const [activeSection, setActiveSection] = useState('home')
   const { resolvedTheme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
   const pathname = usePathname()
@@ -28,49 +27,14 @@ export function Navbar() {
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [isOpen])
 
-  // Track active section when on the homepage
-  useEffect(() => {
-    if (pathname !== '/') return
-
-    const sectionIds = ['home', 'about', 'skills', 'projects', 'education', 'certifications', 'contact']
-    const observers: IntersectionObserver[] = []
-
-    const observerCallback: IntersectionObserverCallback = (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveSection(entry.target.id)
-        }
-      })
-    }
-
-    const observerOptions = {
-      root: null,
-      rootMargin: '-20% 0px -60% 0px',
-      threshold: 0,
-    }
-
-    sectionIds.forEach((id) => {
-      const el = document.getElementById(id)
-      if (el) {
-        const observer = new IntersectionObserver(observerCallback, observerOptions)
-        observer.observe(el)
-        observers.push(observer)
-      }
-    })
-
-    return () => {
-      observers.forEach((obs) => obs.disconnect())
-    }
-  }, [pathname])
-
   const navItems = [
-    { label: 'Home', href: '/#home', id: 'home' },
-    { label: 'About', href: '/#about', id: 'about' },
-    { label: 'Skills', href: '/#skills', id: 'skills' },
-    { label: 'Projects', href: '/#projects', id: 'projects' },
-    { label: 'Education', href: '/#education', id: 'education' },
-    { label: 'Certifications', href: '/#certifications', id: 'certifications' },
-    { label: 'Contact', href: '/#contact', id: 'contact' },
+    { label: 'Home', href: '/' },
+    { label: 'About', href: '/about' },
+    { label: 'Skills', href: '/skills' },
+    { label: 'Projects', href: '/projects' },
+    { label: 'Education', href: '/education' },
+    { label: 'Certifications', href: '/certifications' },
+    { label: 'Contact', href: '/contact' },
   ]
 
   const toggleTheme = () => {
@@ -87,7 +51,7 @@ export function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Personal Brand */}
           <Link
-            href="/#home"
+            href="/"
             className="group flex items-center gap-2.5 min-h-[44px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-lg"
           >
             <span className="w-8 h-8 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center text-primary font-bold text-sm tracking-wider group-hover:bg-primary group-hover:text-primary-foreground transition-all">
@@ -101,7 +65,7 @@ export function Navbar() {
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-1 xl:gap-2" aria-label="Navigasi Utama">
             {navItems.map((item) => {
-              const isActive = pathname === '/' && activeSection === item.id
+              const isActive = pathname === item.href
               return (
                 <Link
                   key={item.label}
@@ -154,7 +118,7 @@ export function Navbar() {
             aria-label="Menu navigasi mobile"
           >
             {navItems.map((item) => {
-              const isActive = pathname === '/' && activeSection === item.id
+              const isActive = pathname === item.href
               return (
                 <Link
                   key={item.label}

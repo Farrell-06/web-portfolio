@@ -303,18 +303,18 @@ export default function Home() {
                   transition={{ duration: 0.6, delay: 0.36, ease: easeOutExpo }}
                   className="flex flex-wrap items-center gap-4 pt-2"
                 >
-                  <a
-                    href="#projects"
+                  <Link
+                    href="/projects"
                     className="inline-flex items-center justify-center px-6 py-3 min-h-[44px] rounded-lg bg-primary text-primary-foreground font-semibold hover:bg-primary/90 active:scale-[0.98] transition-all shadow-xs"
                   >
                     <span>Explore My Projects</span>
-                  </a>
-                  <a
-                    href="#contact"
+                  </Link>
+                  <Link
+                    href="/contact"
                     className="inline-flex items-center justify-center px-6 py-3 min-h-[44px] rounded-lg border border-border text-foreground font-medium hover:bg-muted active:scale-[0.98] transition-all"
                   >
                     <span>Contact Me</span>
-                  </a>
+                  </Link>
                 </motion.div>
 
                 {/* Metadata Badges */}
