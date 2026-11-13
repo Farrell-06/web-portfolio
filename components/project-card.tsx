@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { ExternalLink, Github, Info, Layers, Database, Activity } from 'lucide-react'
+import { ExternalLink, Github, Info, Layers, Database, Activity, TrendingUp } from 'lucide-react'
 import {
   Dialog,
   DialogContent,
@@ -16,6 +16,7 @@ export interface ProjectDetailData {
   workPerformed: string[]
   modelOrArchitecture?: string
   metrics?: { label: string; value: string }[]
+  businessInsight?: string
   academicNote?: string
 }
 
@@ -267,6 +268,17 @@ export function ProjectCard({
                   ))}
                 </ul>
               </div>
+
+              {/* Business Insight & Practical Impact */}
+              {details.businessInsight && (
+                <div className="p-3.5 rounded-lg bg-primary/5 border border-primary/20 text-xs text-foreground leading-relaxed">
+                  <span className="font-semibold text-primary block mb-1 flex items-center gap-1.5">
+                    <TrendingUp className="w-3.5 h-3.5" />
+                    Insight & Nilai Penerapan:
+                  </span>
+                  <p className="text-muted-foreground">{details.businessInsight}</p>
+                </div>
+              )}
 
               {/* Academic Disclaimer Note */}
               {details.academicNote && (

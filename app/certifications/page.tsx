@@ -199,7 +199,7 @@ export default function CertificationsPage() {
                     <button
                       type="button"
                       onClick={() => copyCredentialId(cert.credentialId)}
-                      className="p-1.5 rounded-md hover:bg-muted text-muted-foreground hover:text-foreground transition-colors border border-border min-h-[36px] min-w-[36px] flex items-center justify-center"
+                      className="p-2 rounded-md hover:bg-muted text-muted-foreground hover:text-foreground transition-colors border border-border min-h-[44px] min-w-[44px] flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                       aria-label={`Salin nomor kredensial sertifikat ${cert.title}`}
                       title="Salin ID Kredensial"
                     >
@@ -387,7 +387,7 @@ export default function CertificationsPage() {
               <button
                 type="button"
                 onClick={() => setSelectedCert(null)}
-                className="absolute -top-12 right-0 p-2 text-white hover:text-primary transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center rounded-lg bg-black/40 hover:bg-black/60 border border-white/20"
+                className="absolute -top-12 right-0 p-2 text-white hover:text-primary transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center rounded-lg bg-black/60 hover:bg-black/80 border border-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary z-50"
                 aria-label="Tutup tampilan penuh sertifikat"
               >
                 <X className="w-6 h-6" />

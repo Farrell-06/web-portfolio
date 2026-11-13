@@ -64,7 +64,11 @@ export function ContactForm() {
   return (
     <div className="w-full max-w-2xl mx-auto">
       {status === 'ready_to_send' && (
-        <div className="mb-6 p-4 rounded-lg bg-card border border-primary/40 text-foreground space-y-2">
+        <div
+          role="status"
+          aria-live="polite"
+          className="mb-6 p-4 rounded-lg bg-card border border-primary/40 text-foreground space-y-2"
+        >
           <div className="flex items-center gap-2 text-primary font-medium">
             <CheckCircle2 className="w-5 h-5 text-primary" />
             <span>Aplikasi email Anda telah dibuka</span>
@@ -92,7 +96,11 @@ export function ContactForm() {
       )}
 
       {status === 'error' && (
-        <div className="mb-6 p-4 rounded-lg bg-destructive/10 border border-destructive/40 text-destructive flex items-center gap-3">
+        <div
+          role="alert"
+          aria-live="assertive"
+          className="mb-6 p-4 rounded-lg bg-destructive/10 border border-destructive/40 text-destructive flex items-center gap-3"
+        >
           <AlertCircle className="w-5 h-5 shrink-0" />
           <p className="text-sm font-medium">{errorMessage}</p>
         </div>
@@ -111,6 +119,7 @@ export function ContactForm() {
             value={formData.name}
             onChange={handleChange}
             required
+            aria-required="true"
             className="w-full px-4 py-3 min-h-[44px] rounded-lg bg-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary text-sm"
             placeholder="Masukkan nama Anda"
           />
@@ -128,6 +137,7 @@ export function ContactForm() {
             value={formData.email}
             onChange={handleChange}
             required
+            aria-required="true"
             className="w-full px-4 py-3 min-h-[44px] rounded-lg bg-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary text-sm"
             placeholder="nama@email.com"
           />
@@ -145,7 +155,7 @@ export function ContactForm() {
             value={formData.subject}
             onChange={handleChange}
             className="w-full px-4 py-3 min-h-[44px] rounded-lg bg-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary text-sm"
-            placeholder="Contoh: Diskusi Proyek Web"
+            placeholder="Contoh: Peluang Analis Data / Diskusi Proyek"
           />
         </div>
 
@@ -160,6 +170,7 @@ export function ContactForm() {
             value={formData.message}
             onChange={handleChange}
             required
+            aria-required="true"
             rows={5}
             className="w-full px-4 py-3 rounded-lg bg-background border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary text-sm resize-y"
             placeholder="Tuliskan pesan atau pertanyaan Anda di sini..."
@@ -170,7 +181,7 @@ export function ContactForm() {
         <div>
           <button
             type="submit"
-            className="w-full sm:w-auto px-6 py-3 min-h-[44px] rounded-lg bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors inline-flex items-center justify-center gap-2"
+            className="w-full sm:w-auto px-6 py-3 min-h-[44px] rounded-lg bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors inline-flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           >
             <Mail className="w-4 h-4" />
             <span>Kirim via Email</span>

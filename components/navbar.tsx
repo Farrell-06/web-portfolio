@@ -27,6 +27,11 @@ export function Navbar() {
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [isOpen])
 
+  // Automatically close mobile menu when navigating to a new route
+  useEffect(() => {
+    setIsOpen(false)
+  }, [pathname])
+
   const navItems = [
     { label: 'Home', href: '/' },
     { label: 'About', href: '/about' },
@@ -70,7 +75,8 @@ export function Navbar() {
                 <Link
                   key={item.label}
                   href={item.href}
-                  className={`text-sm font-medium px-3 py-2 min-h-[44px] flex items-center rounded-md transition-colors ${
+                  aria-current={isActive ? 'page' : undefined}
+                  className={`text-sm font-medium px-3 py-2 min-h-[44px] flex items-center rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
                     isActive
                       ? 'text-primary font-semibold bg-primary/10'
                       : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
@@ -86,7 +92,7 @@ export function Navbar() {
           <div className="flex items-center gap-2">
             <button
               onClick={toggleTheme}
-              className="p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center hover:bg-muted rounded-lg text-foreground transition-colors border border-transparent hover:border-border"
+              className="p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center hover:bg-muted rounded-lg text-foreground transition-colors border border-transparent hover:border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
               aria-label={mounted && resolvedTheme === 'dark' ? 'Ganti ke tema terang' : 'Ganti ke tema gelap'}
             >
               {mounted && resolvedTheme === 'dark' ? (
@@ -98,8 +104,9 @@ export function Navbar() {
 
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center hover:bg-muted rounded-lg text-foreground transition-colors border border-transparent hover:border-border"
+              className="lg:hidden p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center hover:bg-muted rounded-lg text-foreground transition-colors border border-transparent hover:border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
               aria-expanded={isOpen}
+              aria-controls="mobile-navigation"
               aria-label={isOpen ? 'Tutup menu navigasi' : 'Buka menu navigasi'}
             >
               {isOpen ? (
@@ -114,6 +121,7 @@ export function Navbar() {
         {/* Mobile Navigation */}
         {isOpen && (
           <nav
+            id="mobile-navigation"
             className="lg:hidden border-t border-border py-3 space-y-1 animate-in fade-in slide-in-from-top-2 duration-200"
             aria-label="Menu navigasi mobile"
           >
@@ -123,7 +131,8 @@ export function Navbar() {
                 <Link
                   key={item.label}
                   href={item.href}
-                  className={`block px-4 py-3 min-h-[44px] rounded-lg text-base font-medium transition-colors flex items-center ${
+                  aria-current={isActive ? 'page' : undefined}
+                  className={`px-4 py-3 min-h-[44px] rounded-lg text-base font-medium transition-colors flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${
                     isActive
                       ? 'text-primary font-semibold bg-primary/10'
                       : 'text-foreground hover:bg-muted'

@@ -28,13 +28,41 @@ export default function SkillsPage() {
       description:
         'Pemrosesan data mentah, eksplorasi pola statistik, serta perancangan visualisasi data untuk menghasilkan temuan dan rekomendasi berbasis data.',
       competencies: [
-        { name: 'Python for Data Analysis', context: 'Data wrangling, scripting, dan manipulasi data terstruktur' },
-        { name: 'Pandas & NumPy', context: 'Operasi array berkecepatan tinggi dan data frame multi-dimensi' },
-        { name: 'SQL & Relational DBMS', context: 'Query kompleks, aggregasi, dan integrasi basis data MySQL' },
-        { name: 'Matplotlib & Seaborn', context: 'Visualisasi distribusi, korelasi, dan presentasi visual insight' },
-        { name: 'Exploratory Data Analysis (EDA)', context: 'Pemeriksaan distribusi, outlier, serta hubungan antar variabel' },
-        { name: 'Data Preprocessing', context: 'Handling missing values, normalisasi fitur, dan encoding data' },
-        { name: 'Jupyter Notebook', context: 'Dokumentasi workflow analitis, eksperimen, dan visualisasi interaktif' },
+        {
+          name: 'Python for Data Analysis',
+          context: 'Data wrangling, scripting, dan manipulasi data terstruktur',
+          project: { name: 'Heart Disease Classification', href: '/projects' },
+        },
+        {
+          name: 'Pandas & NumPy',
+          context: 'Operasi array berkecepatan tinggi dan data frame multi-dimensi',
+          project: { name: 'Heart Disease Classification', href: '/projects' },
+        },
+        {
+          name: 'SQL & Relational DBMS',
+          context: 'Query kompleks, aggregasi, dan integrasi basis data MySQL',
+          project: { name: 'SONARA FEST', href: '/projects' },
+        },
+        {
+          name: 'Matplotlib & Seaborn',
+          context: 'Visualisasi distribusi, korelasi, dan presentasi visual insight',
+          project: { name: 'Heart Disease Classification', href: '/projects' },
+        },
+        {
+          name: 'Exploratory Data Analysis (EDA)',
+          context: 'Pemeriksaan distribusi, outlier, serta hubungan antar variabel klinis',
+          project: { name: 'Heart Disease Classification', href: '/projects' },
+        },
+        {
+          name: 'Data Preprocessing',
+          context: 'Handling missing values, normalisasi fitur, dan encoding data',
+          project: { name: 'Heart Disease Classification', href: '/projects' },
+        },
+        {
+          name: 'Jupyter Notebook',
+          context: 'Dokumentasi workflow analitis, eksperimen, dan visualisasi interaktif',
+          project: { name: 'Heart Disease Classification', href: '/projects' },
+        },
       ],
     },
     {
@@ -44,11 +72,31 @@ export default function SkillsPage() {
       description:
         'Pembangunan dan evaluasi algoritma klasifikasi data untuk pengenalan pola prediktif berbasis dataset empiris.',
       competencies: [
-        { name: 'Scikit-learn', context: 'Pipeline machine learning, pemisahan dataset, dan cross-validation' },
-        { name: 'Supervised Classification', context: 'Implementasi model klasifikasi biner dan multi-kelas' },
-        { name: 'Support Vector Machine (SVM)', context: 'Klasifikasi dengan kernel RBF untuk pemisahan data kompleks' },
-        { name: 'Model Evaluation Metrics', context: 'Confusion matrix, precision, recall, f1-score, dan akurasi' },
-        { name: 'Feature Scaling & Standardization', context: 'Standarisasi fitur numerik sebelum pelatihan model' },
+        {
+          name: 'Scikit-learn',
+          context: 'Pipeline machine learning, pemisahan dataset, dan cross-validation',
+          project: { name: 'Heart Disease Classification', href: '/projects' },
+        },
+        {
+          name: 'Supervised Classification',
+          context: 'Implementasi model klasifikasi biner dan multi-kelas',
+          project: { name: 'Heart Disease Classification', href: '/projects' },
+        },
+        {
+          name: 'Support Vector Machine (SVM)',
+          context: 'Klasifikasi dengan kernel RBF untuk pemisahan data kompleks',
+          project: { name: 'Heart Disease Classification', href: '/projects' },
+        },
+        {
+          name: 'Model Evaluation Metrics',
+          context: 'Confusion matrix, precision, recall (94.00%), f1-score, dan akurasi',
+          project: { name: 'Heart Disease Classification', href: '/projects' },
+        },
+        {
+          name: 'Feature Scaling & Standardization',
+          context: 'Standarisasi fitur numerik sebelum pelatihan model',
+          project: { name: 'Heart Disease Classification', href: '/projects' },
+        },
       ],
     },
     {
@@ -58,10 +106,26 @@ export default function SkillsPage() {
       description:
         'Pengembangan aplikasi web statis dan dinamis, implementasi backend modular, serta integrasi sistem basis data.',
       competencies: [
-        { name: 'Python Flask', context: 'Pengembangan backend ringan, blueprint modular, dan REST routing' },
-        { name: 'PHP & MySQL', context: 'Pembangunan web dinamis dan manajemen query basis data relasional' },
-        { name: 'HTML5 & CSS3', context: 'Struktur semantik dokumen web dan penyusunan tata letak responsif' },
-        { name: 'Jinja2 Templating', context: 'Render halaman dinamis dari arsitektur backend Python' },
+        {
+          name: 'Python Flask',
+          context: 'Pengembangan backend modular, blueprint, dan REST routing',
+          project: { name: 'PT. Energi Nusantara Raya', href: '/projects' },
+        },
+        {
+          name: 'PHP & MySQL',
+          context: 'Pembangunan web dinamis dan manajemen query basis data relasional',
+          project: { name: 'SONARA FEST', href: '/projects' },
+        },
+        {
+          name: 'HTML5 & CSS3',
+          context: 'Struktur semantik dokumen web dan penyusunan tata letak responsif',
+          project: { name: 'SONARA FEST & Flask Web', href: '/projects' },
+        },
+        {
+          name: 'Jinja2 Templating',
+          context: 'Render halaman dinamis dari arsitektur backend Python',
+          project: { name: 'PT. Energi Nusantara Raya', href: '/projects' },
+        },
       ],
     },
   ]
@@ -128,14 +192,27 @@ export default function SkillsPage() {
                     {category.competencies.map((comp) => (
                       <div
                         key={comp.name}
-                        className="p-4 rounded-xl border border-border bg-muted/40 hover:bg-muted/70 hover:border-primary/40 transition-colors"
+                        className="p-4 rounded-xl border border-border bg-muted/40 hover:bg-muted/70 hover:border-primary/40 transition-colors flex flex-col justify-between"
                       >
-                        <p className="text-sm font-semibold text-foreground mb-1">
-                          {comp.name}
-                        </p>
-                        <p className="text-xs text-muted-foreground leading-relaxed">
-                          {comp.context}
-                        </p>
+                        <div>
+                          <p className="text-sm font-semibold text-foreground mb-1">
+                            {comp.name}
+                          </p>
+                          <p className="text-xs text-muted-foreground leading-relaxed mb-3">
+                            {comp.context}
+                          </p>
+                        </div>
+                        {comp.project && (
+                          <div className="pt-2.5 border-t border-border/60">
+                            <Link
+                              href={comp.project.href}
+                              className="text-[11px] font-medium text-primary hover:underline inline-flex items-center gap-1"
+                            >
+                              <span className="text-muted-foreground">Proyek:</span>
+                              <span>{comp.project.name}</span>
+                            </Link>
+                          </div>
+                        )}
                       </div>
                     ))}
                   </div>

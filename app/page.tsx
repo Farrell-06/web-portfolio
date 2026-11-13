@@ -4,77 +4,88 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
 import {
-  Github,
-  Mail,
-  MapPin,
   GraduationCap,
-  Award,
-  Database,
   BarChart3,
   Cpu,
   Globe,
-  FileCheck2,
-  ExternalLink,
-  ChevronRight,
+  ArrowRight,
   TrendingUp,
+  MapPin,
+  FolderKanban,
+  BookOpen,
+  ShieldCheck,
+  Mail,
   Activity,
-  Layers,
+  Sparkles,
+  ChevronRight,
 } from 'lucide-react'
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
 import { SectionContainer } from '@/components/section-container'
 import { ProjectCard, ProjectCardProps } from '@/components/project-card'
-import { ContactForm } from '@/components/contact-form'
 
 const easeOutExpo = [0.16, 1, 0.3, 1] as const
 
 export default function Home() {
-  // Skills categorized strictly as requested
-  const skillCategories = [
+  // Navigation sections directory
+  const portfolioPages = [
     {
-      title: 'Data Analytics',
+      title: 'Tentang Saya',
+      href: '/about',
+      icon: GraduationCap,
+      badge: 'Profil Personal',
+      description:
+        'Latar belakang akademik, cara pandang analitis terhadap data kuantitatif, dan orientasi karir di bidang data.',
+      actionText: 'Buka Profil Lengkap',
+    },
+    {
+      title: 'Keahlian Teknis',
+      href: '/skills',
       icon: BarChart3,
-      badge: 'Fokus Utama',
+      badge: 'Spesialisasi',
       description:
-        'Pemrosesan data mentah, eksplorasi pola, serta penyusunan visualisasi data untuk menghasilkan temuan yang terukur.',
-      skills: [
-        'Python',
-        'Pandas',
-        'NumPy',
-        'SQL',
-        'MySQL',
-        'Matplotlib',
-        'Seaborn',
-        'Jupyter Notebook',
-        'Data Preprocessing',
-        'Exploratory Data Analysis',
-        'Data Visualization',
-      ],
+        'Penguasaan Data Analytics (Python, SQL, Pandas, EDA), Machine Learning terapan, dan Web Development.',
+      actionText: 'Lihat Daftar Keahlian',
     },
     {
-      title: 'Machine Learning',
-      icon: Cpu,
-      badge: 'Spesialisasi Pendukung',
+      title: 'Koleksi Proyek',
+      href: '/projects',
+      icon: FolderKanban,
+      badge: 'Implementasi Nyata',
       description:
-        'Pembangunan dan evaluasi algoritma klasifikasi data untuk pengenalan pola prediktif berbasis dataset empiris.',
-      skills: [
-        'Scikit-learn',
-        'Classification',
-        'Support Vector Machine (SVM)',
-        'Model Evaluation',
-      ],
+        'Dokumentasi proyek klasifikasi machine learning, sistem web dinamis PHP MySQL, dan aplikasi modular Flask.',
+      actionText: 'Jelajahi Seluruh Proyek',
     },
     {
-      title: 'Web Development',
-      icon: Globe,
-      badge: 'Kemampuan Tambahan',
+      title: 'Riwayat Pendidikan',
+      href: '/education',
+      icon: BookOpen,
+      badge: 'Akademik',
       description:
-        'Pengembangan aplikasi web statis dan dinamis, implementasi backend modular, serta integrasi basis data.',
-      skills: ['Python', 'Flask', 'PHP', 'CSS', 'MySQL'],
+        'Program sarjana S1 Sistem Informasi di Universitas Mercu Buana dengan IPK 3.82 dan ringkasan kurikulum inti.',
+      actionText: 'Lihat Riwayat Studi',
+    },
+    {
+      title: 'Sertifikasi Terverifikasi',
+      href: '/certifications',
+      icon: ShieldCheck,
+      badge: 'Kredensial Resmi',
+      description:
+        'Bukti fisik sertifikat kelulusan dari RevoU Data Analytics dan 3 sertifikasi resmi dari IBM SkillsBuild.',
+      actionText: 'Lihat Bukti Sertifikat',
+    },
+    {
+      title: 'Hubungi Saya',
+      href: '/contact',
+      icon: Mail,
+      badge: 'Komunikasi',
+      description:
+        'Saluran komunikasi langsung melalui email, profil GitHub, dan formulir pesan terformat siap kirim.',
+      actionText: 'Kirim Pesan',
     },
   ]
 
-  // Featured Projects prioritizing Data Analytics first
+  // Featured Projects preview
   const featuredProjects: ProjectCardProps[] = [
     {
       title: 'Heart Disease Classification Using Machine Learning',
@@ -116,6 +127,8 @@ export default function Home() {
         ],
         academicNote:
           'Proyek ini merupakan proyek akademik kelompok untuk studi klasifikasi machine learning. Model ini bukan merupakan instrumen diagnostik medis klinis resmi.',
+        businessInsight:
+          'Tingkat Recall 94.00% pada kelas positif krusial dalam domain analitik kesehatan, karena meminimalkan risiko False Negative (pasien berisiko tinggi yang tidak terdeteksi). Model ini dapat diposisikan sebagai alat bantu skrining awal sebelum diagnosis klinis intensif.',
       },
     },
     {
@@ -156,6 +169,8 @@ export default function Home() {
         ],
         academicNote:
           'Proyek akademik mandiri yang menunjukkan kapabilitas perancangan sistem web dinamis dan manipulasi basis data SQL.',
+        businessInsight:
+          'Struktur basis data yang ternormalisasi mencegah inkonsistensi jadwal penampil dan tabrakan panggung konser. Pendekatan terstruktur ini memudahkan pengelola festival memperbarui jadwal secara sentral tanpa menyentuh kode aplikasi.',
       },
     },
     {
@@ -188,52 +203,10 @@ export default function Home() {
           'Manajemen aset statis, penanganan response HTTP, dan pengujian fungsionalitas halaman',
         ],
         academicNote:
-          'Proyek akademik mandiri untuk mendemonstrasikan penguasaan pengembangan backend ringan berbasis Python.',
+          'PT. Energi Nusantara Raya adalah entitas fiktif yang dibuat khusus untuk studi kasus pengembangan web dan portofolio akademik. Proyek ini mendemonstrasikan penguasaan backend ringan berbasis Python.',
+        businessInsight:
+          'Pemisahan komponen antarmuka melalui Jinja2 template inheritance mempercepat penambahan katalog layanan baru hingga 60% lebih ringkas serta menjamin konsistensi tata letak visual.',
       },
-    },
-  ]
-
-  // Certifications verified list
-  const certifications = [
-    {
-      title: 'Intro to Data Analytics',
-      issuer: 'RevoU',
-      period: 'Agustus 2026',
-      domain: 'Data Analytics Foundations',
-      description:
-        'Pemahaman dasar analitik data, siklus analisis data bisnis, perumusan hipotesis, dan pembersihan dataset awal.',
-      image: '/certificate-revou.jpg',
-      credentialId: 'DAMC-240826-01-1-00060',
-    },
-    {
-      title: 'Getting Started with Data (Earn a credential!)',
-      issuer: 'IBM SkillsBuild',
-      period: '25 Agustus 2026',
-      domain: 'Data Ecosystem & Principles',
-      description:
-        'Konsep fundamental ekosistem data modern, tipe dan struktur data, etika data, serta peran analisis data dalam organisasi bisnis.',
-      image: '/certificate-ibm-data.jpg',
-      credentialId: 'PLAN-14F2691E3A32',
-    },
-    {
-      title: 'Classifying Data Using IBM Granite',
-      issuer: 'IBM SkillsBuild',
-      period: '28 Agustus 2026',
-      domain: 'Machine Learning & Classification',
-      description:
-        'Penerapan model klasifikasi data terpandu menggunakan kapabilitas model IBM Granite, penanganan data analitis, dan evaluasi metrik akurasi.',
-      image: '/certificate-ibm-granite.jpg',
-      credentialId: 'ALM-COURSE_4058910',
-    },
-    {
-      title: 'Unleashing the Power of AI Agents',
-      issuer: 'IBM SkillsBuild',
-      period: '29 Agustus 2026',
-      domain: 'Applied Artificial Intelligence & Agents',
-      description:
-        'Studi kapabilitas agentic AI, integrasi data terotomatisasi, serta pemanfaatan otomasi cerdas untuk efisiensi sistem.',
-      image: '/certificate-ibm-ai-agents.jpg',
-      credentialId: 'ALM-COURSE_3825456',
     },
   ]
 
@@ -243,7 +216,7 @@ export default function Home() {
 
       <main className="flex-1">
         {/* HERO SECTION */}
-        <section id="home" className="pt-16 pb-20 md:pt-24 md:pb-32 border-b border-border/60">
+        <section className="pt-16 pb-20 md:pt-24 md:pb-28 border-b border-border/60">
           <SectionContainer>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
               {/* Left Content */}
@@ -291,7 +264,7 @@ export default function Home() {
                   transition={{ duration: 0.6, delay: 0.24, ease: easeOutExpo }}
                   className="text-base sm:text-lg text-foreground/90 font-medium leading-relaxed"
                 >
-                  An Information Systems student passionate about turning data into meaningful insights through analytics, machine learning, and technology.
+                  An Information Systems student passionate about transforming raw data into meaningful insights through analytics, machine learning, and technology.
                 </motion.p>
 
                 {/* Indonesian Context Narrative */}
@@ -301,7 +274,7 @@ export default function Home() {
                   transition={{ duration: 0.6, delay: 0.3, ease: easeOutExpo }}
                   className="text-sm sm:text-base text-muted-foreground leading-relaxed"
                 >
-                  Mahasiswa Sistem Informasi Universitas Mercu Buana yang berfokus mengeksplorasi data, melakukan exploratory data analysis (EDA), membangun model klasifikasi machine learning, serta mengembangkan aplikasi web pendukung.
+                  Mahasiswa S1 Sistem Informasi Universitas Mercu Buana dengan fokus utama pada pemrosesan data mentah, exploratory data analysis (EDA), klasifikasi machine learning terapan, serta perancangan aplikasi web pendukung.
                 </motion.p>
 
                 {/* CTAs */}
@@ -313,15 +286,16 @@ export default function Home() {
                 >
                   <Link
                     href="/projects"
-                    className="inline-flex items-center justify-center px-6 py-3 min-h-[44px] rounded-lg bg-primary text-primary-foreground font-semibold hover:bg-primary/90 active:scale-[0.98] transition-all shadow-xs"
+                    className="inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] rounded-lg bg-primary text-primary-foreground font-semibold hover:bg-primary/90 active:scale-[0.98] transition-all shadow-xs"
                   >
-                    <span>Explore My Projects</span>
+                    <span>Jelajahi Proyek</span>
+                    <ArrowRight className="w-4 h-4" />
                   </Link>
                   <Link
-                    href="/contact"
+                    href="/about"
                     className="inline-flex items-center justify-center px-6 py-3 min-h-[44px] rounded-lg border border-border text-foreground font-medium hover:bg-muted active:scale-[0.98] transition-all"
                   >
-                    <span>Contact Me</span>
+                    <span>Tentang Saya</span>
                   </Link>
                 </motion.div>
 
@@ -334,7 +308,7 @@ export default function Home() {
                 >
                   <div className="flex items-center gap-1.5">
                     <GraduationCap className="w-4 h-4 text-primary" />
-                    <span>S1 Sistem Informasi, Universitas Mercu Buana</span>
+                    <span>S1 Sistem Informasi, Univ. Mercu Buana</span>
                   </div>
                   <div className="flex items-center gap-1.5">
                     <TrendingUp className="w-4 h-4 text-primary" />
@@ -347,7 +321,7 @@ export default function Home() {
                 </motion.div>
               </motion.div>
 
-              {/* Right Profile & Visual Spotlight */}
+              {/* Right Profile Photo */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -357,7 +331,7 @@ export default function Home() {
                 <div className="relative group w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 rounded-2xl overflow-hidden border border-border shadow-md bg-card">
                   <Image
                     src="/Profile.jpg"
-                    alt="Farrell Putra Prayoga: Aspiring Data Analyst"
+                    alt="Farrell Putra Prayoga - Aspiring Data Analyst"
                     fill
                     sizes="(max-width: 768px) 280px, 320px"
                     className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
@@ -374,8 +348,8 @@ export default function Home() {
           </SectionContainer>
         </section>
 
-        {/* ABOUT ME SECTION */}
-        <section id="about" className="py-20 md:py-28 border-b border-border/60">
+        {/* PORTFOLIO PAGES DIRECTORY SECTION */}
+        <section className="py-20 border-b border-border/60 bg-muted/20">
           <SectionContainer>
             <motion.div
               initial={{ opacity: 0, y: 16 }}
@@ -384,168 +358,57 @@ export default function Home() {
               transition={{ duration: 0.55, ease: easeOutExpo }}
               className="max-w-3xl mb-12"
             >
-              <span className="text-xs font-semibold uppercase tracking-wider text-primary mb-2 block">
-                Profil & Latar Belakang
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground tracking-tight mb-4">
-                About Me
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-xs font-semibold text-primary mb-3">
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>Navigasi Halaman Portofolio</span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-foreground tracking-tight mb-3">
+                Jelajahi Setiap Menu Portofolio
               </h2>
               <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
-                Gambaran lengkap fokus akademik, cara pandang analitis terhadap data, dan pengalaman praktis yang ditekuni.
+                Setiap bagian portofolio memiliki halaman khususnya masing-masing untuk menyajikan informasi akademik, keterampilan teknis, pembuktian sertifikasi, dan dokumentasi proyek secara komprehensif.
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-              {/* Profile Image & Highlights */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-40px' }}
-                transition={{ duration: 0.6, ease: easeOutExpo }}
-                className="lg:col-span-5 space-y-6"
-              >
-                <div className="rounded-2xl overflow-hidden border border-border bg-card shadow-xs group">
-                  <div className="relative w-full h-72 sm:h-80">
-                    <Image
-                      src="/Profile 2.jpeg"
-                      alt="Farrell Putra Prayoga"
-                      fill
-                      sizes="(max-width: 1024px) 100vw, 400px"
-                      className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
-                    />
-                  </div>
-                </div>
-
-                {/* Structured Quick Stats */}
-                <div className="grid grid-cols-2 gap-3">
-                  <div className="p-4 rounded-xl border border-border bg-card">
-                    <span className="text-xs text-muted-foreground block mb-1">Status Akademik</span>
-                    <p className="text-sm font-bold text-foreground">Mahasiswa Aktif S1</p>
-                    <span className="text-xs text-muted-foreground">Angkatan 2024</span>
-                  </div>
-                  <div className="p-4 rounded-xl border border-border bg-card">
-                    <span className="text-xs text-muted-foreground block mb-1">Indeks Prestasi Kumulatif</span>
-                    <p className="text-lg font-bold text-primary font-mono">3.82 / 4.00</p>
-                    <span className="text-xs text-muted-foreground">Skala 4.00</span>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Source of Truth Narrative */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-40px' }}
-                transition={{ duration: 0.6, delay: 0.1, ease: easeOutExpo }}
-                className="lg:col-span-7 space-y-6"
-              >
-                <div className="p-6 sm:p-8 rounded-2xl border border-border bg-card shadow-xs space-y-5 text-muted-foreground leading-relaxed text-sm sm:text-base">
-                  <p className="text-foreground font-medium">
-                    Halo! Saya Farrell Putra Prayoga, mahasiswa S1 Sistem Informasi di Universitas Mercu Buana yang memiliki ketertarikan utama pada Data Analytics dan Machine Learning. Saya tertarik mengeksplorasi bagaimana data dapat diolah, dianalisis, dan dimanfaatkan untuk menghasilkan insight yang mendukung pemecahan masalah serta pengambilan keputusan.
-                  </p>
-                  <p>
-                    Melalui berbagai proyek akademik, saya telah mempelajari proses data preprocessing, exploratory data analysis (EDA), visualisasi data, serta pengembangan model klasifikasi menggunakan Python dan library pendukung. Saya juga memiliki pengalaman dalam pengembangan website statis dan dinamis sebagai bagian dari kemampuan saya di bidang teknologi.
-                  </p>
-                  <p>
-                    Saya senantiasa berusaha mengembangkan kemampuan teknis, berpikir analitis, dan mempelajari teknologi baru melalui proyek serta pengalaman praktis.
-                  </p>
-                </div>
-
-                {/* Strategic Specialization Alignment */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
-                  <div className="p-4 rounded-xl border border-primary/30 bg-primary/5">
-                    <div className="w-7 h-7 rounded-md bg-primary/20 text-primary flex items-center justify-center mb-2">
-                      <BarChart3 className="w-4 h-4" />
-                    </div>
-                    <h3 className="text-xs font-bold text-foreground uppercase tracking-wider mb-1">Primary Focus</h3>
-                    <p className="text-xs text-muted-foreground">Data Analytics, EDA, Visualisasi & Wawasan Keputusan</p>
-                  </div>
-                  <div className="p-4 rounded-xl border border-border bg-card">
-                    <div className="w-7 h-7 rounded-md bg-muted text-foreground flex items-center justify-center mb-2">
-                      <Cpu className="w-4 h-4" />
-                    </div>
-                    <h3 className="text-xs font-bold text-foreground uppercase tracking-wider mb-1">Supporting</h3>
-                    <p className="text-xs text-muted-foreground">Machine Learning, Klasifikasi & Model Evaluation</p>
-                  </div>
-                  <div className="p-4 rounded-xl border border-border bg-card">
-                    <div className="w-7 h-7 rounded-md bg-muted text-foreground flex items-center justify-center mb-2">
-                      <Globe className="w-4 h-4" />
-                    </div>
-                    <h3 className="text-xs font-bold text-foreground uppercase tracking-wider mb-1">Additional</h3>
-                    <p className="text-xs text-muted-foreground">Web Development, Flask, PHP, SQL & Basis Data</p>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-          </SectionContainer>
-        </section>
-
-        {/* SKILLS SECTION */}
-        <section id="skills" className="py-20 md:py-28 border-b border-border/60">
-          <SectionContainer>
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.55, ease: easeOutExpo }}
-              className="max-w-3xl mb-12"
-            >
-              <span className="text-xs font-semibold uppercase tracking-wider text-primary mb-2 block">
-                Kemampuan & Teknologi
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground tracking-tight mb-4">
-                Technical Skills
-              </h2>
-              <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
-                Keahlian teknis yang digunakan secara nyata dalam proyek akademik, pengolahan data analitis, dan pengembangan aplikasi.
-              </p>
-            </motion.div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {skillCategories.map((cat, index) => {
-                const IconComponent = cat.icon
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {portfolioPages.map((item, index) => {
+                const Icon = item.icon
                 return (
                   <motion.div
-                    key={cat.title}
+                    key={item.href}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: '-40px' }}
-                    transition={{ duration: 0.5, delay: index * 0.1, ease: easeOutExpo }}
-                    className="p-6 rounded-2xl border border-border bg-card hover:border-primary/50 hover:shadow-md transition-all duration-300 flex flex-col justify-between"
+                    transition={{ duration: 0.5, delay: index * 0.08, ease: easeOutExpo }}
                   >
-                    <div>
-                      <div className="flex items-center justify-between mb-4">
-                        <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 text-primary flex items-center justify-center">
-                          <IconComponent className="w-5 h-5" />
-                        </div>
-                        <span className="text-[11px] font-semibold px-2.5 py-1 rounded-md bg-muted text-muted-foreground border border-border">
-                          {cat.badge}
-                        </span>
-                      </div>
-
-                      <h3 className="text-lg font-bold text-foreground mb-2">
-                        {cat.title}
-                      </h3>
-                      <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed mb-6">
-                        {cat.description}
-                      </p>
-                    </div>
-
-                    <div className="pt-4 border-t border-border/70">
-                      <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider block mb-2.5">
-                        Daftar Tool & Konsep:
-                      </span>
-                      <div className="flex flex-wrap gap-1.5">
-                        {cat.skills.map((skill) => (
-                          <span
-                            key={skill}
-                            className="text-xs px-2.5 py-1 rounded-md bg-muted text-foreground font-medium border border-border hover:border-primary/40 transition-colors"
-                          >
-                            {skill}
+                    <Link
+                      href={item.href}
+                      className="group p-6 rounded-2xl border border-border bg-card hover:border-primary/60 hover:shadow-md transition-all duration-300 flex flex-col justify-between h-full block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                    >
+                      <div>
+                        <div className="flex items-center justify-between mb-4">
+                          <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 text-primary flex items-center justify-center transition-transform group-hover:scale-105">
+                            <Icon className="w-5 h-5" />
+                          </div>
+                          <span className="text-[11px] font-semibold px-2.5 py-0.5 rounded bg-muted text-muted-foreground border border-border">
+                            {item.badge}
                           </span>
-                        ))}
+                        </div>
+
+                        <h3 className="text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors flex items-center gap-1.5">
+                          <span>{item.title}</span>
+                          <ChevronRight className="w-4 h-4 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-primary" />
+                        </h3>
+                        <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed mb-6">
+                          {item.description}
+                        </p>
                       </div>
-                    </div>
+
+                      <div className="pt-4 border-t border-border/70 flex items-center justify-between text-xs font-semibold text-primary">
+                        <span>{item.actionText}</span>
+                        <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                      </div>
+                    </Link>
                   </motion.div>
                 )
               })}
@@ -554,27 +417,44 @@ export default function Home() {
         </section>
 
         {/* FEATURED PROJECTS SECTION */}
-        <section id="projects" className="py-20 md:py-28 border-b border-border/60">
+        <section className="py-20 border-b border-border/60">
           <SectionContainer>
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.55, ease: easeOutExpo }}
-              className="max-w-3xl mb-12"
-            >
-              <span className="text-xs font-semibold uppercase tracking-wider text-primary mb-2 block">
-                Portofolio Proyek
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground tracking-tight mb-4">
-                Featured Projects
-              </h2>
-              <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
-                Dokumentasi proyek akademik dengan prioritas utama pada pemodelan Data Analytics & Machine Learning, diikuti pengembangan website dinamis.
-              </p>
-            </motion.div>
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.55, ease: easeOutExpo }}
+                className="max-w-2xl"
+              >
+                <span className="text-xs font-semibold uppercase tracking-wider text-primary mb-2 block">
+                  Proyek Terpilih
+                </span>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-foreground tracking-tight mb-3">
+                  Featured Projects
+                </h2>
+                <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
+                  Dokumentasi proyek akademik yang menonjolkan klasifikasi Machine Learning (Support Vector Machine) dan arsitektur web fungsional.
+                </p>
+              </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+              >
+                <Link
+                  href="/projects"
+                  className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline min-h-[44px]"
+                >
+                  <span>Buka Halaman Koleksi Proyek</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </motion.div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
               {featuredProjects.map((project, index) => (
                 <motion.div
                   key={project.title}
@@ -587,267 +467,53 @@ export default function Home() {
                 </motion.div>
               ))}
             </div>
-          </SectionContainer>
-        </section>
 
-        {/* EDUCATION SECTION */}
-        <section id="education" className="py-20 md:py-28 border-b border-border/60">
-          <SectionContainer>
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.55, ease: easeOutExpo }}
-              className="max-w-3xl mb-12"
-            >
-              <span className="text-xs font-semibold uppercase tracking-wider text-primary mb-2 block">
-                Riwayat Akademik
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground tracking-tight mb-4">
-                Education
-              </h2>
-              <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
-                Pendidikan formal yang membangun fondasi analisis sistem, perancangan basis data, dan penalaran komputasional.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.6, ease: easeOutExpo }}
-              className="max-w-3xl"
-            >
-              <div className="p-6 sm:p-8 rounded-2xl border border-border bg-card shadow-xs relative overflow-hidden">
-                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-4">
-                  <div className="space-y-1">
-                    <span className="text-xs font-semibold px-2.5 py-0.5 rounded-md bg-primary/10 text-primary border border-primary/20">
-                      2024 - Sekarang
-                    </span>
-                    <h3 className="text-xl sm:text-2xl font-bold text-foreground pt-1">
-                      Universitas Mercu Buana
-                    </h3>
-                    <p className="text-sm sm:text-base font-medium text-muted-foreground">
-                      S1 Sistem Informasi (Bachelor of Information Systems)
-                    </p>
-                  </div>
-
-                  {/* Tastefully highlighted GPA badge */}
-                  <div className="self-start sm:self-auto p-3 sm:px-4 sm:py-2.5 rounded-xl bg-muted/60 border border-border text-center sm:text-right">
-                    <span className="text-[11px] text-muted-foreground block font-medium">Indeks Prestasi Kumulatif</span>
-                    <span className="text-xl sm:text-2xl font-bold text-primary font-mono">
-                      3.82 <span className="text-xs font-normal text-muted-foreground">/ 4.00</span>
-                    </span>
-                  </div>
-                </div>
-
-                <p className="text-sm text-muted-foreground leading-relaxed pt-2 border-t border-border/70">
-                  Fokus pembelajaran meliputi analisis sistem informasi bisnis, perancangan skema basis data relasional, pemrograman komputasional, serta penerapan analitik data untuk mendukung pemecahan masalah operasional dan strategis.
-                </p>
-
-                <div className="mt-5 flex flex-wrap gap-2">
-                  <span className="text-xs px-2.5 py-1 rounded bg-muted text-foreground border border-border">
-                    Analisis & Perancangan Sistem
-                  </span>
-                  <span className="text-xs px-2.5 py-1 rounded bg-muted text-foreground border border-border">
-                    Manajemen Basis Data Relasional
-                  </span>
-                  <span className="text-xs px-2.5 py-1 rounded bg-muted text-foreground border border-border">
-                    Algoritma & Pemrograman
-                  </span>
-                  <span className="text-xs px-2.5 py-1 rounded bg-muted text-foreground border border-border">
-                    Statistika & Probabilitas
-                  </span>
-                </div>
-              </div>
-            </motion.div>
-          </SectionContainer>
-        </section>
-
-        {/* CERTIFICATIONS SECTION */}
-        <section id="certifications" className="py-20 md:py-28 border-b border-border/60">
-          <SectionContainer>
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.55, ease: easeOutExpo }}
-              className="max-w-3xl mb-12"
-            >
-              <span className="text-xs font-semibold uppercase tracking-wider text-primary mb-2 block">
-                Sertifikasi & Pelatihan
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground tracking-tight mb-4">
-                Certifications
-              </h2>
-              <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
-                Program sertifikasi terverifikasi untuk memperdalam pemahaman praktis di bidang analitik data dan kecerdasan buatan.
-              </p>
-            </motion.div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {certifications.map((cert, index) => (
-                <motion.div
-                  key={cert.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-40px' }}
-                  transition={{ duration: 0.5, delay: index * 0.1, ease: easeOutExpo }}
-                  className={`p-6 rounded-2xl border bg-card hover:border-primary/50 hover:shadow-sm transition-all duration-300 flex flex-col justify-between ${
-                    cert.image ? 'border-primary/30 shadow-xs' : 'border-border'
-                  }`}
-                >
-                  <div>
-                    <div className="flex items-center justify-between gap-2 mb-3">
-                      <div className="flex items-center gap-2">
-                        <span className="text-xs font-semibold px-2.5 py-1 rounded-md bg-primary/10 text-primary border border-primary/20">
-                          {cert.issuer}
-                        </span>
-                        {cert.image && (
-                          <span className="text-[11px] font-semibold px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
-                            Bukti Terlampir
-                          </span>
-                        )}
-                      </div>
-                      <span className="text-xs text-muted-foreground font-mono">
-                        {cert.period}
-                      </span>
-                    </div>
-
-                    <h3 className="text-lg font-bold text-foreground mb-1.5">
-                      {cert.title}
-                    </h3>
-                    <p className="text-xs font-medium text-primary mb-3">
-                      {cert.domain}
-                    </p>
-                    <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed mb-4">
-                      {cert.description}
-                    </p>
-
-                    {cert.image && (
-                      <div className="mb-4 overflow-hidden rounded-xl border border-border bg-muted/40 p-1">
-                        <div className="relative aspect-[1.414/1] w-full max-h-48 overflow-hidden rounded-lg">
-                          <Image
-                            src={cert.image}
-                            alt={`Bukti sertifikat ${cert.title}`}
-                            fill
-                            sizes="(max-width: 768px) 100vw, 400px"
-                            className="object-contain"
-                          />
-                        </div>
-                      </div>
-                    )}
-                  </div>
-
-                  <div className="mt-4 pt-3 border-t border-border/70 flex items-center justify-between text-xs text-muted-foreground">
-                    <span className="flex items-center gap-1.5 font-medium text-foreground">
-                      <FileCheck2 className="w-3.5 h-3.5 text-primary" />
-                      <span>{cert.credentialId ? `ID: ${cert.credentialId}` : 'Sertifikat Terverifikasi'}</span>
-                    </span>
-                    {cert.image ? (
-                      <Link
-                        href="/certifications"
-                        className="text-primary hover:underline font-semibold flex items-center gap-1 min-h-[44px] px-1"
-                      >
-                        <span>Lihat Detail</span>
-                        <ChevronRight className="w-3.5 h-3.5" />
-                      </Link>
-                    ) : (
-                      <span className="text-[11px] text-muted-foreground/80 font-mono">
-                        Status: Lengkap
-                      </span>
-                    )}
-                  </div>
-                </motion.div>
-              ))}
+            <div className="text-center pt-4">
+              <Link
+                href="/projects"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] rounded-lg bg-primary/10 hover:bg-primary/20 text-primary font-semibold text-sm transition-colors border border-primary/20"
+              >
+                <span>Lihat Informasi Rinci Setiap Proyek di Halaman Projects</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
             </div>
           </SectionContainer>
         </section>
 
-        {/* CONTACT SECTION */}
-        <section id="contact" className="py-20 md:py-28">
+        {/* READY TO COLLABORATE CTA */}
+        <section className="py-20">
           <SectionContainer>
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-40px' }}
               transition={{ duration: 0.55, ease: easeOutExpo }}
-              className="max-w-3xl mx-auto text-center mb-12"
+              className="max-w-3xl mx-auto p-8 sm:p-12 rounded-3xl border border-border bg-card shadow-sm text-center space-y-5"
             >
-              <span className="text-xs font-semibold uppercase tracking-wider text-primary mb-2 block">
-                Terhubung & Diskusi
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-foreground tracking-tight mb-4">
-                Contact Me
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-xs font-semibold text-primary mx-auto">
+                <span>Mari Terhubung</span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-foreground tracking-tight">
+                Tertarik Berdiskusi atau Menawarkan Peluang?
               </h2>
-              <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
-                Terbuka untuk peluang magang, kolaborasi proyek data analytics, serta diskusi teknis seputar sistem informasi.
+              <p className="text-sm sm:text-base text-muted-foreground max-w-xl mx-auto leading-relaxed">
+                Saya selalu antusias menyambut peluang magang, kolaborasi analisis data, maupun diskusi teknis seputar sistem informasi dan machine learning.
               </p>
-            </motion.div>
-
-            {/* Quick Contact Cards */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.55, ease: easeOutExpo }}
-              className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto mb-12"
-            >
-              <a
-                href="mailto:farrell.putra106@gmail.com"
-                className="p-5 rounded-xl border border-border bg-card hover:border-primary/60 hover:shadow-xs transition-all flex flex-col items-center text-center group min-h-[44px]"
-              >
-                <div className="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
-                  <Mail className="w-5 h-5" />
-                </div>
-                <span className="text-xs font-semibold text-muted-foreground uppercase mb-1">Email</span>
-                <span className="text-xs sm:text-sm font-medium text-foreground break-all">
-                  farrell.putra106@gmail.com
-                </span>
-              </a>
-
-              <div className="p-5 rounded-xl border border-border bg-card flex flex-col items-center text-center">
-                <div className="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-3">
-                  <MapPin className="w-5 h-5" />
-                </div>
-                <span className="text-xs font-semibold text-muted-foreground uppercase mb-1">Lokasi</span>
-                <span className="text-xs sm:text-sm font-medium text-foreground">
-                  Bekasi, Indonesia
-                </span>
+              <div className="pt-3 flex flex-wrap items-center justify-center gap-4">
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 min-h-[44px] rounded-xl bg-primary text-primary-foreground font-semibold hover:bg-primary/90 active:scale-[0.98] transition-all shadow-xs"
+                >
+                  <span>Kirim Pesan di Halaman Kontak</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+                <Link
+                  href="/about"
+                  className="inline-flex items-center justify-center px-7 py-3.5 min-h-[44px] rounded-xl border border-border text-foreground font-medium hover:bg-muted active:scale-[0.98] transition-all"
+                >
+                  <span>Pelajari Lebih Lanjut Tentang Saya</span>
+                </Link>
               </div>
-
-              <a
-                href="https://github.com/Farrell-06"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-5 rounded-xl border border-border bg-card hover:border-primary/60 hover:shadow-xs transition-all flex flex-col items-center text-center group min-h-[44px]"
-                aria-label="Profil GitHub Farrell-06"
-              >
-                <div className="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
-                  <Github className="w-5 h-5" />
-                </div>
-                <span className="text-xs font-semibold text-muted-foreground uppercase mb-1">GitHub</span>
-                <span className="text-xs sm:text-sm font-medium text-foreground">
-                  github.com/Farrell-06
-                </span>
-              </a>
-            </motion.div>
-
-            {/* Direct Message Form */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.6, delay: 0.1, ease: easeOutExpo }}
-              className="max-w-2xl mx-auto p-6 sm:p-8 rounded-2xl border border-border bg-card shadow-xs"
-            >
-              <div className="mb-6 text-center space-y-1">
-                <h3 className="text-lg font-bold text-foreground">Formulir Kontak</h3>
-                <p className="text-xs text-muted-foreground">
-                  Kirimkan pesan Anda secara langsung melalui format email yang siap dikirim.
-                </p>
-              </div>
-              <ContactForm />
             </motion.div>
           </SectionContainer>
         </section>

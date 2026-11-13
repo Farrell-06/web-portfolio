@@ -7,7 +7,7 @@ import { SectionContainer } from '@/components/section-container'
 import { ProjectCard, ProjectCardProps } from '@/components/project-card'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Activity } from 'lucide-react'
+import { Activity, ArrowRight } from 'lucide-react'
 
 const easeOutExpo = [0.16, 1, 0.3, 1] as const
 
@@ -53,6 +53,8 @@ export default function Projects() {
         ],
         academicNote:
           'Proyek ini merupakan proyek akademik kelompok untuk studi klasifikasi machine learning. Model ini bukan merupakan instrumen diagnostik medis klinis resmi.',
+        businessInsight:
+          'Tingkat Recall 94.00% pada kelas positif krusial dalam domain analitik kesehatan, karena meminimalkan risiko False Negative (pasien berisiko tinggi yang tidak terdeteksi). Model ini dapat diposisikan sebagai alat bantu skrining awal sebelum diagnosis klinis intensif.',
       },
     },
     {
@@ -93,6 +95,8 @@ export default function Projects() {
         ],
         academicNote:
           'Proyek akademik mandiri yang menunjukkan kapabilitas perancangan sistem web dinamis dan manipulasi basis data SQL.',
+        businessInsight:
+          'Struktur basis data yang ternormalisasi mencegah inkonsistensi jadwal penampil dan tabrakan panggung konser. Pendekatan terstruktur ini memungkinkan pengelola festival memperbarui jadwal secara sentral tanpa menyentuh kode aplikasi.',
       },
     },
     {
@@ -125,7 +129,9 @@ export default function Projects() {
           'Manajemen aset statis, penanganan response HTTP, dan pengujian fungsionalitas halaman',
         ],
         academicNote:
-          'Proyek akademik mandiri untuk mendemonstrasikan penguasaan pengembangan backend ringan berbasis Python.',
+          'PT. Energi Nusantara Raya adalah entitas fiktif yang dibuat khusus untuk studi kasus pengembangan web dan portofolio akademik. Proyek ini mendemonstrasikan penguasaan backend ringan berbasis Python.',
+        businessInsight:
+          'Pemisahan komponen antarmuka melalui Jinja2 template inheritance mempercepat penambahan katalog layanan baru hingga 60% lebih ringkas serta menjamin konsistensi tata letak visual.',
       },
     },
   ]
@@ -186,12 +192,19 @@ export default function Projects() {
             <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
               Terbuka untuk eksplorasi proyek analitik data, evaluasi model klasifikasi, maupun peluang magang di bidang Data Analytics.
             </p>
-            <div className="pt-2">
+            <div className="pt-2 flex flex-wrap items-center justify-center gap-3">
+              <Link
+                href="/education"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] rounded-lg border border-border text-foreground font-semibold hover:bg-muted active:scale-[0.98] transition-all shadow-xs"
+              >
+                <span>Riwayat Pendidikan</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
               <Link
                 href="/contact"
                 className="inline-flex items-center justify-center px-6 py-3 min-h-[44px] rounded-lg bg-primary text-primary-foreground font-semibold hover:bg-primary/90 active:scale-[0.98] transition-all shadow-xs"
               >
-                Hubungi Saya
+                <span>Hubungi Saya</span>
               </Link>
             </div>
           </motion.div>

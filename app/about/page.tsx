@@ -5,7 +5,8 @@ import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
 import { SectionContainer } from '@/components/section-container'
 import Image from 'next/image'
-import { BarChart3, Cpu, Globe, GraduationCap, TrendingUp, MapPin } from 'lucide-react'
+import Link from 'next/link'
+import { BarChart3, Cpu, Globe, GraduationCap, TrendingUp, MapPin, ArrowRight } from 'lucide-react'
 
 const easeOutExpo = [0.16, 1, 0.3, 1] as const
 
@@ -118,13 +119,16 @@ export default function About() {
               </h2>
               <div className="p-6 rounded-2xl border border-border bg-card shadow-xs space-y-4">
                 <p className="text-foreground font-medium">
-                  Halo! Saya Farrell Putra Prayoga, mahasiswa S1 Sistem Informasi di Universitas Mercu Buana yang memiliki ketertarikan utama pada Data Analytics dan Machine Learning. Saya tertarik mengeksplorasi bagaimana data dapat diolah, dianalisis, dan dimanfaatkan untuk menghasilkan insight yang mendukung pemecahan masalah serta pengambilan keputusan.
+                  Saya Farrell Putra Prayoga, mahasiswa S1 Sistem Informasi di Universitas Mercu Buana (IPK 3.82) yang menempatkan Data Analytics sebagai fokus keahlian utama, didukung penguasaan Machine Learning dan Web Development.
                 </p>
                 <p>
-                  Melalui berbagai proyek akademik, saya telah mempelajari proses data preprocessing, exploratory data analysis (EDA), visualisasi data, serta pengembangan model klasifikasi menggunakan Python dan library pendukung. Saya juga memiliki pengalaman dalam pengembangan website statis dan dinamis sebagai bagian dari kemampuan saya di bidang teknologi.
+                  Perjalanan analitik saya berakar dari pemahaman tentang bagaimana data kuantitatif diterjemahkan menjadi wawasan yang terukur bagi proses bisnis organisasi. Melalui perkuliahan Sistem Informasi dan pengerjaan proyek akademik, saya mendalami perancangan skema basis data relasional (MySQL), manipulasi dataset menggunakan Python (Pandas, NumPy), hingga penyusunan visualisasi analitis (Matplotlib, Seaborn).
                 </p>
                 <p>
-                  Saya senantiasa berusaha mengembangkan kemampuan teknis, berpikir analitis, dan mempelajari teknologi baru melalui proyek serta pengalaman praktis.
+                  Pada domain Machine Learning terapan, saya mengimplementasikan model klasifikasi Support Vector Machine (SVM) pada studi kasus risiko penyakit jantung dengan tingkat recall 94.00% pada kelas positif. Didukung pemahaman arsitektur web (PHP dan Python Flask), saya mampu merancang alur integrasi data dari antarmuka pengguna hingga lapisan basis data secara utuh.
+                </p>
+                <p>
+                  Saat ini, saya aktif memperkuat kompetensi melalui program kredensial resmi (RevoU Data Analytics dan IBM SkillsBuild) serta terbuka untuk peluang magang maupun kolaborasi proyek analitik data yang membutuhkan ketelitian analitis dan integritas metodologi.
                 </p>
               </div>
 
@@ -206,6 +210,33 @@ export default function About() {
               )
             })}
           </div>
+        </SectionContainer>
+
+        {/* CTA to Skills */}
+        <SectionContainer className="py-16 border-t border-border/70 mt-8">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.55, ease: easeOutExpo }}
+            className="max-w-2xl mx-auto text-center space-y-4"
+          >
+            <h2 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight">
+              Eksplorasi Keahlian & Spesialisasi
+            </h2>
+            <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
+              Pelajari rincian kompetensi teknis di bidang Data Analytics, Machine Learning terapan, dan Web Development beserta keterhubungannya pada proyek nyata.
+            </p>
+            <div className="pt-2">
+              <Link
+                href="/skills"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] rounded-lg bg-primary text-primary-foreground font-semibold hover:bg-primary/90 active:scale-[0.98] transition-all shadow-xs"
+              >
+                <span>Buka Halaman Skills</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </motion.div>
         </SectionContainer>
       </main>
 

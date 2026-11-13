@@ -5,7 +5,8 @@ import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
 import { SectionContainer } from '@/components/section-container'
 import { ContactForm } from '@/components/contact-form'
-import { Mail, Github, MapPin } from 'lucide-react'
+import Link from 'next/link'
+import { Mail, Github, MapPin, ArrowLeft } from 'lucide-react'
 
 const easeOutExpo = [0.16, 1, 0.3, 1] as const
 
@@ -143,6 +144,16 @@ export default function Contact() {
                   Terbuka untuk eksplorasi proyek Data Analytics, pemodelan klasifikasi Machine Learning, studi kasus Sistem Informasi, dan program magang.
                 </p>
               </div>
+            </div>
+
+            <div className="mt-10 text-center">
+              <Link
+                href="/"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-border text-foreground hover:bg-muted font-medium text-sm transition-colors min-h-[44px]"
+              >
+                <ArrowLeft className="w-4 h-4 text-primary" />
+                <span>Kembali ke Halaman Utama</span>
+              </Link>
             </div>
           </motion.div>
         </SectionContainer>
